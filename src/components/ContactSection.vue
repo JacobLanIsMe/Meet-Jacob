@@ -179,8 +179,10 @@ const services = [
   'Azure 雲端架構設計與部署',
   'Microsoft Dynamics 365 客製化',
   'Vue 3 / Angular 前端開發',
+  'RAG',
   '資料庫設計與效能優化',
-  '高併發系統重構與優化'
+  '高併發系統重構與優化',
+  '跨領域專案協作（生醫 × 程式）'
 ]
 
 const form = reactive({ name: '', email: '', subject: '', message: '' })
