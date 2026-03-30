@@ -81,7 +81,8 @@ export const profile = {
           { name: 'RESTful API', level: 90 },
           { name: 'Entity Framework / Dapper', level: 85 },
           { name: 'SignalR', level: 80 },
-          { name: 'RabbitMQ', level: 78 }
+          { name: 'RabbitMQ', level: 78 },
+          { name: 'RAG', level: 80 }
         ]
       },
       {
@@ -124,9 +125,9 @@ export const profile = {
         client: 'ChinaChem Group',
         category: 'enterprise',
         description:
-          '整合華懋集團旗下業務資訊（如心酒店、商場、保險等），建置 POS 銷售後台系統並整合 Microsoft Dynamics 365。',
+          '使用 Microsoft Dynamics 365 整合華懋集團旗下業務資訊（如心酒店、商場、保險等）。',
         highlights: [
-          '使用 .NET Core 6 建立 POS 銷售後端系統，設計完整交易與管理流程',
+          '會員整合並設計完整管理流程',
           '整合 OAuth 2.0（Microsoft 帳號登入），提升系統安全性',
           '成功串接 Alipay 金流 API，支援付款通知與訂單驗證',
           '部署至 Microsoft Azure 雲端平台，提升服務可用性'
@@ -154,8 +155,9 @@ export const profile = {
         client: 'AIA（上市人壽保險集團）',
         category: 'enterprise',
         description:
-          '整合友邦保險客戶資訊系統，包含客戶資料管理、點數管理、禮品管理，並導入即時資料監控技術。',
+          '整合 AIA 客戶資訊系統與忠誠點數系統，包含客戶資料管理、點數管理、任務管理，並導入即時資料監控技術等。',
         highlights: [
+          '導入忠誠系統，實現客戶點數累積與兌換功能',
           '建立會員系統與多層級權限管理',
           '導入 Change Data Capture (CDC) 技術，實現即時資料庫異動監控',
           '整合 RabbitMQ Delayed Message Exchange，優化任務排程機制',

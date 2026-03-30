@@ -10,22 +10,25 @@
         <h2 class="section-title">
           讓我們<span class="gradient-sw"> 一起合作</span>
         </h2>
-        <p class="section-desc">
-          我目前開放接受軟體工程相關案子，包含前後端系統開發、Azure 雲端架構設計、Microsoft Dynamics 365 客製化等。歡迎透過以下方式聯絡。
-        </p>
       </div>
 
       <div class="contact-layout">
-        <!-- Left: Contact Info -->
-        <div class="contact-info fade-c-el">
-          <div class="info-card">
-            <div class="info-card-header">
-              <div class="avail-indicator">
-                <span class="avail-pulse"></span>
-                開放合作中
+        <!-- Left: Services -->
+        <div class="contact-left fade-c-el">
+          <div class="services-card">
+            <div class="services-title">可提供服務</div>
+            <div class="services-list">
+              <div v-for="svc in services" :key="svc" class="service-item">
+                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                {{ svc }}
               </div>
             </div>
+          </div>
+        </div>
 
+        <!-- Right: Contact Info -->
+        <div class="contact-info fade-c-el">
+          <div class="info-card">
             <div class="info-items">
               <a :href="`mailto:${profile.email}`" class="info-item">
                 <div class="info-icon">
@@ -71,89 +74,8 @@
               </div>
             </div>
           </div>
-
-          <!-- Services -->
-          <div class="services-card fade-c-el">
-            <div class="services-title">可提供服務</div>
-            <div class="services-list">
-              <div v-for="svc in services" :key="svc" class="service-item">
-                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                {{ svc }}
-              </div>
-            </div>
-          </div>
         </div>
 
-        <!-- Right: Message Form -->
-        <div class="contact-form-wrap fade-c-el">
-          <form class="contact-form" @submit.prevent="handleSubmit" novalidate>
-            <div class="form-title">傳送訊息</div>
-
-            <div class="form-group">
-              <label for="name">姓名 <span class="req">*</span></label>
-              <input
-                id="name"
-                v-model="form.name"
-                type="text"
-                placeholder="您的姓名"
-                :class="{ error: errors.name }"
-                autocomplete="name"
-              />
-              <span v-if="errors.name" class="error-msg">{{ errors.name }}</span>
-            </div>
-
-            <div class="form-group">
-              <label for="email">Email <span class="req">*</span></label>
-              <input
-                id="email"
-                v-model="form.email"
-                type="email"
-                placeholder="your@email.com"
-                :class="{ error: errors.email }"
-                autocomplete="email"
-              />
-              <span v-if="errors.email" class="error-msg">{{ errors.email }}</span>
-            </div>
-
-            <div class="form-group">
-              <label for="subject">主旨</label>
-              <input
-                id="subject"
-                v-model="form.subject"
-                type="text"
-                placeholder="合作詢問、專案委託…"
-                autocomplete="off"
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="message">訊息內容 <span class="req">*</span></label>
-              <textarea
-                id="message"
-                v-model="form.message"
-                rows="5"
-                placeholder="請描述您的專案需求或合作方式…"
-                :class="{ error: errors.message }"
-              ></textarea>
-              <span v-if="errors.message" class="error-msg">{{ errors.message }}</span>
-            </div>
-
-            <button type="submit" class="btn btn-primary submit-btn" :disabled="submitted">
-              <template v-if="!submitted">
-                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
-                送出訊息
-              </template>
-              <template v-else>
-                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                已複製 Email — 請直接寄信！
-              </template>
-            </button>
-
-            <p class="form-note">
-              * 表單送出後會幫您複製 Email，直接寄信更快喔 😊
-            </p>
-          </form>
-        </div>
       </div>
     </div>
 
@@ -171,48 +93,19 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 import { profile } from '../data/profile.js'
 
 const services = [
-  '.NET Core 後端系統開發',
-  'Azure 雲端架構設計與部署',
+  '忠誠點數系統導入',
+  '前後端系統開發',
+  '雲端架構設計與部署',
   'Microsoft Dynamics 365 客製化',
-  'Vue 3 / Angular 前端開發',
   'RAG',
   '資料庫設計與效能優化',
   '高併發系統重構與優化',
   '跨領域專案協作（生醫 × 程式）'
 ]
-
-const form = reactive({ name: '', email: '', subject: '', message: '' })
-const errors = reactive({ name: '', email: '', message: '' })
-const submitted = ref(false)
-
-function validate() {
-  errors.name = ''
-  errors.email = ''
-  errors.message = ''
-  let ok = true
-  if (!form.name.trim()) { errors.name = '請填寫姓名'; ok = false }
-  if (!form.email.trim()) {
-    errors.email = '請填寫 Email'; ok = false
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-    errors.email = '請輸入有效的 Email 格式'; ok = false
-  }
-  if (!form.message.trim()) { errors.message = '請填寫訊息內容'; ok = false }
-  return ok
-}
-
-function handleSubmit() {
-  if (!validate()) return
-  // Copy email to clipboard and open mail client
-  navigator.clipboard?.writeText(profile.email).catch(() => {})
-  submitted.value = true
-  const subject = encodeURIComponent(form.subject || '合作洽詢')
-  const body = encodeURIComponent(`Hi Jacob,\n\n${form.message}\n\n致上，\n${form.name}`)
-  window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`
-}
 
 let observer = null
 onMounted(() => {
@@ -240,7 +133,14 @@ onUnmounted(() => observer?.disconnect())
   background: linear-gradient(90deg, transparent, var(--sw-border), transparent);
 }
 
-.section-header { margin-bottom: 48px; }
+.section-header { margin-bottom: 32px; }
+
+/* ── Left col ── */
+.contact-left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
 
 .fade-c-el {
   opacity: 0;
@@ -256,8 +156,18 @@ onUnmounted(() => observer?.disconnect())
 .contact-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 28px;
+  gap: 48px;
   align-items: start;
+}
+
+@media (max-width: 768px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .contact-left {
+    padding-right: 0;
+  }
 }
 
 /* ── Info Card ── */
@@ -362,83 +272,6 @@ onUnmounted(() => observer?.disconnect())
 }
 .service-item svg { color: var(--sw-primary); flex-shrink: 0; }
 
-/* ── Form ── */
-.contact-form-wrap {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius);
-  padding: 28px;
-}
-.form-title {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 24px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 16px;
-}
-.form-group label {
-  font-size: 0.82rem;
-  color: var(--text-secondary);
-  font-weight: 500;
-}
-.req { color: var(--sw-primary); }
-
-.form-group input,
-.form-group textarea {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-sm);
-  padding: 10px 14px;
-  font-size: 0.9rem;
-  color: var(--text-primary);
-  font-family: 'Inter', 'Noto Sans TC', sans-serif;
-  transition: var(--transition-fast);
-  outline: none;
-  resize: vertical;
-}
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: var(--text-muted);
-}
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color: var(--sw-primary);
-  box-shadow: 0 0 0 3px var(--sw-glow);
-}
-.form-group input.error,
-.form-group textarea.error {
-  border-color: #f87171;
-}
-.error-msg {
-  font-size: 0.75rem;
-  color: #f87171;
-}
-
-.submit-btn {
-  width: 100%;
-  justify-content: center;
-  padding: 12px;
-  font-size: 0.95rem;
-  margin-top: 4px;
-}
-.submit-btn:disabled {
-  background: var(--bio-primary);
-  cursor: default;
-  transform: none;
-}
-
-.form-note {
-  margin-top: 10px;
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  text-align: center;
-}
-
 /* ── Footer ── */
 .site-footer {
   margin-top: 80px;
@@ -461,8 +294,5 @@ onUnmounted(() => observer?.disconnect())
 }
 .footer-email:hover { color: var(--sw-secondary); }
 
-/* ── Responsive ── */
-@media (max-width: 768px) {
-  .contact-layout { grid-template-columns: 1fr; }
-}
+
 </style>
