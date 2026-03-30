@@ -22,10 +22,20 @@ export const profile = {
 
     experience: [
       {
+        company: '星識科技有限公司',
+        role: '軟體工程師',
+        period: '2025/05 - 至今',
+        isCurrent: true,
+        highlights: [
+          '開發 RAG（Retrieval-Augmented Generation）系統，整合大型語言模型與企業知識庫。',
+          '建置 AI 智能客服系統，提升客戶服務自動化與回應效率。'
+        ]
+      },
+      {
         company: '台灣創建雲端股份有限公司',
         role: '後端工程師',
-        period: '2022/12 - 至今',
-        isCurrent: true,
+        period: '2022/12 - 2025/05',
+        isCurrent: false,
         highlights: [
           '參與多項企業級系統建置，涵蓋 POS 銷售後台、會員管理平台、健康資訊系統及看診服務系統。',
           '熟悉 Microsoft Dynamics 365 客製化開發，前端採 Vue 2/3，後端整合 .NET Core，實現高度客製需求。',
@@ -167,7 +177,9 @@ export const profile = {
           'Angular Material UI 元件庫'
         ],
         tech: ['ASP.NET', 'Angular', 'Angular Material', 'Azure', 'SQL Server', 'Imgur API'],
-        github: 'https://github.com/JacobLanIsMe'
+        githubBackend: 'https://github.com/JacobLanIsMe/ProductiveLab_B',
+        githubFrontend: 'https://github.com/JacobLanIsMe/ProductiveLab_F',
+        slides: 'https://drive.google.com/file/d/1GEDd35OvuzbtWQQnX-PcZvB_ye32AZDN/view?usp=sharing'
       },
       {
         id: 5,
@@ -182,7 +194,7 @@ export const profile = {
           '自動化下單與風控機制'
         ],
         tech: ['ASP.NET', '元大證券 OneAPI', 'C#'],
-        github: 'https://github.com/JacobLanIsMe'
+        github: 'https://github.com/JacobLanIsMe/TwStockAutoTrade'
       },
       {
         id: 6,
@@ -198,7 +210,8 @@ export const profile = {
           'Angular + Azure 前後端整合部署'
         ],
         tech: ['ASP.NET', 'Angular', 'Redis', 'Background Service', 'Azure'],
-        github: 'https://github.com/JacobLanIsMe'
+        githubBackend: 'https://github.com/JacobLanIsMe/MyFuture',
+        githubFrontend: 'https://github.com/JacobLanIsMe/MyFuture_F'
       },
       {
         id: 7,
@@ -215,7 +228,8 @@ export const profile = {
           'IHostedService 商品自動上下架排程'
         ],
         tech: ['HTML', 'CSS', 'JavaScript', 'jQuery', 'ASP.NET', 'SQL Server', 'SignalR'],
-        github: 'https://github.com/JacobLanIsMe'
+        github: 'https://github.com/JacobLanIsMe/slniSpanFinal',
+        slides: 'https://drive.google.com/file/d/1qtebq4m7QWARYXMSFI_0UDmr6f3roJyb/view?usp=sharing'
       },
       {
         id: 8,
@@ -231,7 +245,7 @@ export const profile = {
           '跨領域：生醫知識 × 程式技術'
         ],
         tech: ['Python', 'OpenCV'],
-        github: 'https://github.com/JacobLanIsMe'
+        github: 'https://github.com/JacobLanIsMe/IDH1_mutation.git'
       }
     ],
 
@@ -240,13 +254,17 @@ export const profile = {
         name: 'Microsoft Certified',
         subtitle: 'Azure Administrator Associate',
         level: 'Associate',
-        color: '#0078d4'
+        color: '#0078d4',
+        badge: 'https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg',
+        link: 'https://learn.microsoft.com/en-us/users/65617977/credentials/dc48a7fe17840212?ref=https%3A%2F%2Fwww.linkedin.com%2F'
       },
       {
         name: 'Microsoft Certified',
         subtitle: 'Azure Fundamentals',
         level: 'Fundamentals',
-        color: '#0078d4'
+        color: '#0078d4',
+        badge: 'https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg',
+        link: 'https://learn.microsoft.com/en-us/users/65617977/credentials/20b4446389bcb5e4?ref=https%3A%2F%2Fwww.linkedin.com%2F'
       }
     ]
   },
@@ -338,9 +356,7 @@ export const profile = {
 
     awards: [
       '2017 International Conference on Environmental Medicine & 14th Symposium of Frontiers of Biomedical Sciences — Outstanding Paper Award',
-      '醫事檢驗師執照',
-      '普通小型車駕照',
-      '普通重型機車駕照'
+      '醫事檢驗師執照'
     ],
 
     labSkills: [

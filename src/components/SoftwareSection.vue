@@ -84,19 +84,8 @@
               <span class="sg-icon">{{ group.icon }}</span>
               <span class="sg-title">{{ group.category }}</span>
             </div>
-            <div class="skill-bars">
-              <div v-for="skill in group.skills" :key="skill.name" class="skill-bar-item">
-                <div class="sb-label">
-                  <span>{{ skill.name }}</span>
-                  <span class="sb-percent">{{ skill.level }}%</span>
-                </div>
-                <div class="sb-track">
-                  <div
-                    class="sb-fill"
-                    :style="{ width: skillsVisible ? `${skill.level}%` : '0%', background: `linear-gradient(90deg, ${group.color}aa, ${group.color})` }"
-                  ></div>
-                </div>
-              </div>
+            <div class="skill-tags">
+              <span v-for="skill in group.skills" :key="skill.name" class="skill-chip" :style="{ borderColor: group.color + '55', color: group.color }">{{ skill.name }}</span>
             </div>
           </div>
         </div>
@@ -122,23 +111,12 @@
             v-for="proj in filteredProjects"
             :key="proj.id"
             class="project-card fade-in-el"
-            :class="{ expanded: expandedProject === proj.id }"
-            @click="toggleProject(proj.id)"
           >
-            <div class="pc-category-dot" :style="{ background: proj.category === 'enterprise' ? 'var(--sw-primary)' : 'var(--bio-primary)' }"></div>
             <div class="pc-header">
               <div>
                 <div class="pc-name">{{ proj.name }}</div>
                 <div class="pc-client">{{ proj.client }}</div>
               </div>
-              <svg
-                class="pc-arrow"
-                :class="{ rotated: expandedProject === proj.id }"
-                width="16" height="16" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-              </svg>
             </div>
 
             <p class="pc-desc">{{ proj.description }}</p>
@@ -148,26 +126,46 @@
               <span v-for="t in proj.tech" :key="t" class="tag">{{ t }}</span>
             </div>
 
-            <!-- Expanded Highlights -->
-            <transition name="expand">
-              <div v-if="expandedProject === proj.id" class="pc-highlights">
+            <!-- Highlights -->
+            <div class="pc-highlights">
                 <div class="pc-hl-title">主要工作內容</div>
                 <ul>
                   <li v-for="h in proj.highlights" :key="h">{{ h }}</li>
                 </ul>
+                <div class="pc-links">
+                <!-- single repo -->
                 <a
-                  v-if="proj.github"
+                  v-if="proj.github && !proj.githubBackend"
                   :href="proj.github"
-                  target="_blank"
-                  rel="noopener"
+                  target="_blank" rel="noopener"
                   class="btn btn-outline pc-github"
-                  @click.stop
                 >
                   <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
                   GitHub
                 </a>
-              </div>
-            </transition>
+                <!-- backend + frontend repos -->
+                <template v-if="proj.githubBackend">
+                  <a :href="proj.githubBackend" target="_blank" rel="noopener" class="btn btn-outline pc-github">
+                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    Backend
+                  </a>
+                  <a v-if="proj.githubFrontend" :href="proj.githubFrontend" target="_blank" rel="noopener" class="btn btn-outline pc-github">
+                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    Frontend
+                  </a>
+                </template>
+                <!-- slides -->
+                <a
+                  v-if="proj.slides"
+                  :href="proj.slides"
+                  target="_blank" rel="noopener"
+                  class="btn btn-outline pc-github pc-slides"
+                >
+                  <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 21h10M12 3v14M3 7h18M3 7a2 2 0 012-2h14a2 2 0 012 2"/></svg>
+                  投影片
+                </a>
+                </div>
+            </div>
           </div>
         </div>
       </div>
@@ -175,40 +173,38 @@
       <!-- ══ Tab: 證照 ══ -->
       <div v-show="activeTab === 'certs'" class="tab-content">
         <div class="certs-row">
-          <div v-for="cert in profile.software.certifications" :key="cert.subtitle" class="cert-card fade-in-el">
+          <a
+            v-for="cert in profile.software.certifications"
+            :key="cert.subtitle"
+            class="cert-card fade-in-el"
+            :href="cert.link"
+            target="_blank"
+            rel="noopener"
+          >
             <div class="cert-icon">
-              <svg width="32" height="32" viewBox="0 0 25 25" fill="none">
-                <path d="M11.5 2L13.5 2C19.02 2 23.5 6.48 23.5 12C23.5 17.52 19.02 22 13.5 22L11.5 22C5.98 22 1.5 17.52 1.5 12C1.5 6.48 5.98 2 11.5 2Z" fill="#0078d4" opacity="0.15"/>
-                <path d="M12.5 6L14.5 10L19 10.5L15.75 13.5L16.5 18L12.5 16L8.5 18L9.25 13.5L6 10.5L10.5 10L12.5 6Z" fill="#0078d4"/>
-              </svg>
+              <img :src="cert.badge" :alt="cert.subtitle" width="56" height="56" />
             </div>
             <div class="cert-info">
               <div class="cert-name">{{ cert.name }}</div>
               <div class="cert-subtitle">{{ cert.subtitle }}</div>
               <span class="cert-level" :class="cert.level.toLowerCase()">{{ cert.level }}</span>
             </div>
-          </div>
+          </a>
         </div>
 
-        <!-- Also mention license -->
-        <div class="also-note fade-in-el">
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          另持有醫事檢驗師執照（生物化學背景）
-        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import { profile } from '../data/profile.js'
 
 const activeTab = ref('experience')
 const openJobs = ref([0]) // first job open by default
-const expandedProject = ref(null)
+
 const activeFilter = ref('all')
-const skillsVisible = ref(false)
 let skillsObserver = null
 
 const tabs = [
@@ -235,24 +231,30 @@ function toggleJob(idx) {
   else openJobs.value.splice(i, 1)
 }
 
-function toggleProject(id) {
-  expandedProject.value = expandedProject.value === id ? null : id
-}
 
-// Scroll-triggered skill bar animation
+
+// Scroll-triggered fade-in animation
+let globalObserver = null
+
 function setupObserver() {
   const els = document.querySelectorAll('.fade-in-el')
-  const io = new IntersectionObserver((entries) => {
+  globalObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible')
-        if (e.target.closest('.skills-grid')) skillsVisible.value = true
-      }
+      if (e.isIntersecting) e.target.classList.add('visible')
     })
   }, { threshold: 0.1 })
-  els.forEach(el => io.observe(el))
-  skillsObserver = io
+  els.forEach(el => globalObserver.observe(el))
+  skillsObserver = globalObserver
 }
+
+watch(activeFilter, async () => {
+  await nextTick()
+  const els = document.querySelectorAll('.fade-in-el:not(.visible)')
+  els.forEach(el => {
+    el.classList.add('visible')
+    globalObserver?.observe(el)
+  })
+})
 
 onMounted(() => setTimeout(setupObserver, 200))
 onUnmounted(() => skillsObserver?.disconnect())
@@ -481,26 +483,18 @@ onUnmounted(() => skillsObserver?.disconnect())
   color: var(--text-primary);
 }
 
-.skill-bars { display: flex; flex-direction: column; gap: 14px; }
-.skill-bar-item { }
-.sb-label {
+.skill-tags {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.skill-chip {
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid;
   font-size: 0.82rem;
-  color: var(--text-secondary);
-  margin-bottom: 6px;
-}
-.sb-percent { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; }
-.sb-track {
-  height: 5px;
-  background: var(--border-color);
-  border-radius: 3px;
-  overflow: hidden;
-}
-.sb-fill {
-  height: 100%;
-  border-radius: 3px;
-  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  background: transparent;
 }
 
 /* ──────────────────────────────
@@ -544,7 +538,6 @@ onUnmounted(() => skillsObserver?.disconnect())
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
   padding: 20px;
-  cursor: pointer;
   transition: var(--transition);
   position: relative;
   overflow: hidden;
@@ -553,20 +546,6 @@ onUnmounted(() => skillsObserver?.disconnect())
   border-color: var(--sw-border);
   transform: translateY(-2px);
   box-shadow: var(--shadow-card);
-}
-.project-card.expanded {
-  border-color: var(--sw-primary);
-  box-shadow: var(--shadow-sw);
-}
-
-.pc-category-dot {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  opacity: 0.8;
 }
 
 .pc-header {
@@ -587,13 +566,7 @@ onUnmounted(() => skillsObserver?.disconnect())
   color: var(--text-muted);
   margin-top: 3px;
 }
-.pc-arrow {
-  color: var(--text-muted);
-  flex-shrink: 0;
-  transition: transform 0.3s ease;
-  margin-top: 2px;
-}
-.pc-arrow.rotated { transform: rotate(180deg); }
+
 
 .pc-desc {
   font-size: 0.85rem;
@@ -628,6 +601,11 @@ onUnmounted(() => skillsObserver?.disconnect())
   flex-direction: column;
   gap: 8px;
   margin-bottom: 16px;
+}
+.pc-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 .pc-highlights li {
   font-size: 0.83rem;
@@ -668,6 +646,8 @@ onUnmounted(() => skillsObserver?.disconnect())
   flex: 1;
   min-width: 260px;
   transition: var(--transition);
+  text-decoration: none;
+  color: inherit;
 }
 .cert-card:hover {
   border-color: rgba(0,120,212,0.4);
@@ -680,9 +660,12 @@ onUnmounted(() => skillsObserver?.disconnect())
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0,120,212,0.1);
-  border-radius: var(--radius-sm);
   flex-shrink: 0;
+}
+.cert-icon img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
 }
 .cert-name {
   font-size: 0.78rem;
@@ -711,20 +694,6 @@ onUnmounted(() => skillsObserver?.disconnect())
   color: #93c5fd;
   border: 1px solid rgba(0,120,212,0.2);
 }
-
-.also-note {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  padding: 12px 16px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  width: fit-content;
-}
-.also-note svg { color: var(--bio-primary); flex-shrink: 0; }
 
 /* ── Transitions ── */
 .expand-enter-active,

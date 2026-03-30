@@ -11,7 +11,7 @@
           讓我們<span class="gradient-sw"> 一起合作</span>
         </h2>
         <p class="section-desc">
-          我目前開放接受軟體工程相關案子，包含後端系統開發、Azure 雲端架構設計、Microsoft Dynamics 365 客製化、前後端整合等。歡迎透過以下方式聯絡。
+          我目前開放接受軟體工程相關案子，包含前後端系統開發、Azure 雲端架構設計、Microsoft Dynamics 365 客製化等。歡迎透過以下方式聯絡。
         </p>
       </div>
 
