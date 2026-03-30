@@ -1,0 +1,286 @@
+/* ───────────── CSS Variables ───────────── */
+:root {
+  --bg-primary: #f5f7fa;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f0f4ff;
+
+  --sw-primary: #2563eb;
+  --sw-secondary: #3b82f6;
+  --sw-glow: rgba(37, 99, 235, 0.08);
+  --sw-border: rgba(37, 99, 235, 0.25);
+
+  --bio-primary: #059669;
+  --bio-secondary: #10b981;
+  --bio-glow: rgba(5, 150, 105, 0.08);
+  --bio-border: rgba(5, 150, 105, 0.25);
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+
+  --border-color: #e2e8f0;
+  --border-light: #cbd5e1;
+
+  --radius-sm: 6px;
+  --radius: 12px;
+  --radius-lg: 20px;
+
+  --shadow-sw: 0 0 30px rgba(37, 99, 235, 0.12);
+  --shadow-bio: 0 0 30px rgba(5, 150, 105, 0.12);
+  --shadow-card: 0 4px 24px rgba(15, 23, 42, 0.08);
+
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.15s ease;
+}
+
+/* ───────────── Reset & Base ───────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', 'Noto Sans TC', sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sw-secondary);
+}
+
+/* ───────────── Typography ───────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', 'Noto Sans TC', sans-serif;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+code, .mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ───────────── Layout Utilities ───────────── */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 96px 0;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.section-desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+/* ───────────── Badge / Tag ───────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.badge-sw {
+  background: var(--sw-glow);
+  color: var(--sw-secondary);
+  border: 1px solid var(--sw-border);
+}
+
+.badge-bio {
+  background: var(--bio-glow);
+  color: var(--bio-secondary);
+  border: 1px solid var(--bio-border);
+}
+
+.tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-light);
+  transition: var(--transition-fast);
+}
+
+.tag:hover {
+  background: var(--sw-glow);
+  color: var(--sw-secondary);
+  border-color: var(--sw-border);
+}
+
+/* ───────────── Buttons ───────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--sw-primary);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--sw-secondary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sw);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+}
+.btn-outline:hover {
+  border-color: var(--sw-primary);
+  color: var(--sw-secondary);
+  background: var(--sw-glow);
+  transform: translateY(-2px);
+}
+
+.btn-bio {
+  background: var(--bio-primary);
+  color: #fff;
+}
+.btn-bio:hover {
+  background: var(--bio-secondary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-bio);
+}
+
+/* ───────────── Card ───────────── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: var(--transition);
+}
+
+.card:hover {
+  border-color: var(--border-light);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card);
+}
+
+/* ───────────── Divider ───────────── */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-light), transparent);
+  margin: 48px 0;
+}
+
+/* ───────────── Section Separator ───────────── */
+.section-separator {
+  position: relative;
+  padding: 32px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.section-separator::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-light) 30%, var(--border-light) 70%, transparent);
+}
+
+/* ───────────── Scroll Fade-in Animation ───────────── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ───────────── Gradient Text ───────────── */
+.gradient-sw {
+  background: linear-gradient(135deg, var(--sw-primary), var(--sw-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-bio {
+  background: linear-gradient(135deg, var(--bio-primary), var(--bio-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ───────────── Responsive ───────────── */
+@media (max-width: 768px) {
+  .section {
+    padding: 64px 0;
+  }
+  .container {
+    padding: 0 16px;
+  }
+}
