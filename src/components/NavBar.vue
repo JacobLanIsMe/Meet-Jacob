@@ -2,10 +2,21 @@
   <nav class="navbar" :class="{ scrolled: isScrolled }">
     <div class="container nav-inner">
       <!-- Logo -->
-      <a class="nav-logo" href="#home" @click.prevent="emit('navigate', 'home')">
-        <span class="mono gradient-sw">Jacob</span>
-        <span class="nav-logo-dot">.</span>
-      </a>
+      <div class="nav-logo" aria-label="個人與公司識別">
+        <a class="nav-logo-home" href="#home" @click.prevent="emit('navigate', 'home')">
+          <span class="mono gradient-sw">Jacob</span>
+        </a>
+        <span class="nav-separator" aria-hidden="true">|</span>
+        <a
+          class="nav-company-link mono"
+          href="https://hoshishiki.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="前往星識科技官網（另開新分頁）"
+        >
+          Hoshishiki-Tech <span class="company-zh">星識科技</span>
+        </a>
+      </div>
 
       <!-- Desktop Links -->
       <ul class="nav-links">
@@ -112,17 +123,38 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 }
 
 .nav-logo {
-  font-size: 1.3rem;
+  font-size: 1.02rem;
   font-weight: 800;
   letter-spacing: -0.5px;
   display: flex;
   align-items: center;
+  gap: 6px;
 }
-.nav-logo-dot {
-  color: var(--sw-primary);
-  font-size: 1.6rem;
-  line-height: 1;
-  margin-left: 1px;
+.nav-logo-home {
+  display: inline-flex;
+  align-items: center;
+}
+.nav-separator {
+  color: var(--text-muted);
+  margin: 0 2px;
+  font-size: 0.95em;
+  font-weight: 600;
+}
+
+.nav-company-link {
+  font-size: 1em;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 0.15px;
+}
+.nav-company-link:hover {
+  color: var(--sw-secondary);
+}
+.company-zh {
+  font-size: 1em;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-left: 4px;
 }
 
 .nav-links {
@@ -236,5 +268,9 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   .nav-links,
   .nav-cta { display: none; }
   .mobile-toggle { display: flex; }
+  .nav-inner { gap: 14px; }
+  .nav-logo { font-size: 0.98rem; }
+  .nav-company-link,
+  .company-zh { font-size: 1em; }
 }
 </style>
