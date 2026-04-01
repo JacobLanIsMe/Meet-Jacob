@@ -8,13 +8,14 @@
         </a>
         <span class="nav-separator" aria-hidden="true">|</span>
         <a
-          class="nav-company-link mono"
+          class="nav-company-link"
           href="https://hoshishiki.com/"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="前往星識科技官網（另開新分頁）"
         >
-          Hoshishiki-Tech <span class="company-zh">星識科技</span>
+          <span class="company-en mono">Hoshishiki-Tech</span>
+          <span class="company-zh">星識科技</span>
         </a>
       </div>
 
@@ -142,19 +143,27 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 }
 
 .nav-company-link {
-  font-size: 1em;
-  font-weight: 700;
-  color: var(--text-secondary);
-  letter-spacing: 0.15px;
-}
-.nav-company-link:hover {
-  color: var(--sw-secondary);
-}
-.company-zh {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
   font-size: 1em;
   font-weight: 700;
   color: var(--text-primary);
-  margin-left: 4px;
+  letter-spacing: 0.15px;
+}
+.nav-company-link:hover .company-en,
+.nav-company-link:hover .company-zh {
+  color: var(--bio-secondary);
+}
+.company-en {
+  transition: var(--transition-fast);
+}
+.company-zh {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 1em;
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: var(--transition-fast);
 }
 
 .nav-links {
