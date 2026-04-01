@@ -74,7 +74,7 @@ const isScrolled = ref(false)
 const mobileOpen = ref(false)
 
 const navItems = [
-  { id: 'home', label: '首頁', theme: 'sw' },
+  { id: 'home', label: '個人簡介', theme: 'sw' },
   { id: 'software', label: '軟體工程師', theme: 'sw' },
   { id: 'biochemistry', label: '生物化學背景', theme: 'bio' },
   { id: 'contact', label: '合作洽詢', theme: 'sw' }

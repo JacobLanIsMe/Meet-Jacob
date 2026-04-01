@@ -38,11 +38,13 @@ export const profile = {
         isCurrent: false,
         highlights: [
           '參與多項企業級系統建置，涵蓋 POS 銷售後台、會員管理平台、健康資訊系統及看診服務系統。',
+          '導入忠誠點數系統，實現客戶點數累積與兌換功能，提升客戶黏著度。',
           '熟悉 Microsoft Dynamics 365 客製化開發，前端採 Vue 2/3，後端整合 .NET Core，實現高度客製需求。',
           '重構高併發應用程式，實測可穩定支援每秒 1000 次請求（RPS）。',
           '導入 RabbitMQ Delayed Message Exchange 實現訊息延遲傳遞，強化系統事件解耦設計。',
           '協助企業從地端系統平滑遷移至 Microsoft Azure 雲端平台。',
-          '擅長 SQL Server 資料庫結構設計與效能調校，透過 CDC 技術即時監控資料異動。'
+          '擅長 SQL Server 資料庫結構設計與效能調校，透過 CDC 技術即時監控資料異動。',
+          '串接 Alipay 提供第三方交易流程支援。'
         ]
       },
       {
