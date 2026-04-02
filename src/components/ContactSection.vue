@@ -82,11 +82,7 @@
     <!-- Footer -->
     <div class="site-footer">
       <div class="container footer-inner">
-        <span>© 2026 藍紹瑋 Jacob Lan</span>
-        <span class="footer-sep">·</span>
-        <span>Built with <span class="gradient-sw">Vue 3</span></span>
-        <span class="footer-sep">·</span>
-        <a :href="`mailto:${profile.email}`" class="footer-email">{{ profile.email }}</a>
+        <span>2026 藍紹瑋 Jacob Lan © 版權所有</span>
       </div>
     </div>
   </section>
