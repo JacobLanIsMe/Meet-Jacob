@@ -114,7 +114,7 @@ import { profile } from '../data/profile.js'
 
 const mainTech = ['.NET Core', 'Vue 3', 'Azure', 'Dynamics 365', 'SQL Server', 'RabbitMQ']
 const highlights = [
-  { text: '3年+ 後端開發經驗', color: 'var(--sw-primary)' },
+  { text: '多年 後端開發經驗', color: 'var(--sw-primary)' },
   { text: 'Azure 雙認證', color: '#0078d4' },
   { text: 'NTU 生化博士', color: 'var(--bio-primary)' }
 ]

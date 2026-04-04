@@ -11,7 +11,7 @@
           軟體工程師<span class="gradient-sw"> 經歷</span>
         </h2>
         <p class="section-desc">
-          3 年以上企業級後端開發經驗，服務香港多間大型集團，擅長 .NET Core、Azure 雲端架構與 Microsoft Dynamics 365 客製化開發。
+          多年企業級後端開發經驗，服務香港多間大型集團，擅長 .NET Core、Azure 雲端架構與 Microsoft Dynamics 365 客製化開發。
         </p>
       </div>
 

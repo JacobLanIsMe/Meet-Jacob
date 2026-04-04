@@ -10,7 +10,7 @@ export const profile = {
   github: 'https://github.com/JacobLanIsMe',
   linkedin: 'https://www.linkedin.com/in/%E7%B4%B9%E7%91%8B-%E8%97%8D-9b7547166/',
   summary:
-    '擁有 3 年以上 .NET Core 後端開發經驗，熟悉 Vue 3 與 Angular 前端框架，精通 Microsoft Dynamics 365 客製化開發，具備 Azure 雲端架構設計與部署管理能力。持有 Microsoft Azure 認證，曾參與香港多間大型企業（ChinaChem、AIA、Mannings）之系統建置。同時擁有台灣大學生物化學博士學位，具備跨領域的邏輯思維與研究能力。',
+    '擁有多年後端開發經驗，熟悉 Vue 3 與 Angular 前端框架，精通 Microsoft Dynamics 365 客製化開發，具備 Azure 雲端架構設計與部署管理能力。持有 Microsoft Azure 認證，曾參與香港多間大型企業（ChinaChem、AIA、Mannings）之系統建置。同時擁有台灣大學生物化學博士學位，具備跨領域的邏輯思維與研究能力。',
 
   software: {
     stats: [
