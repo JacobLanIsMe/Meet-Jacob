@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://agreeable-river-003a2651e.6.azurestaticapps.net/sitemap.xml
