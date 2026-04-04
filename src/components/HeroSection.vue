@@ -19,7 +19,7 @@
         </h1>
 
         <div class="hero-title-row fade-up visible" style="animation-delay:0.2s">
-          <span class="hero-title-badge badge badge-sw">後端工程師</span>
+          <span class="hero-title-badge badge badge-sw">軟體工程師</span>
           <span class="hero-title-sep">×</span>
           <span class="hero-title-badge badge badge-bio">生物化學博士</span>
         </div>

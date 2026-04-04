@@ -4,7 +4,7 @@
 
 export const profile = {
   name: { zh: '藍紹瑋', en: 'Jacob Lan' },
-  title: '後端工程師 / Backend Engineer',
+  title: '軟體工程師 / Software Engineer',
   email: 'maimaisatt@gmail.com',
   phone: '0905-552522',
   github: 'https://github.com/JacobLanIsMe',
@@ -33,7 +33,7 @@ export const profile = {
       },
       {
         company: '台灣創建雲端股份有限公司',
-        role: '後端工程師',
+        role: '軟體工程師',
         period: '2022/12 - 2025/05',
         isCurrent: false,
         highlights: [
@@ -49,7 +49,7 @@ export const profile = {
       },
       {
         company: 'iSpan 資展國際股份有限公司',
-        role: '全端工程師',
+        role: '軟體工程師',
         period: '2022/06 - 2022/11',
         isCurrent: false,
         highlights: [
