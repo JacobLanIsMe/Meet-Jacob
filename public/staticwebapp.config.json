@@ -1,7 +1,13 @@
 {
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/assets/*", "/*.{css,js,png,jpg,ico,svg,woff,woff2}"]
+    "exclude": [
+      "/assets/*",
+      "/*.{css,js,png,jpg,ico,svg,woff,woff2}",
+      "/google*.html",
+      "/sitemap.xml",
+      "/robots.txt"
+    ]
   },
   "globalHeaders": {
     "X-Frame-Options": "SAMEORIGIN",
