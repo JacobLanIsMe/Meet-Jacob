@@ -14,7 +14,7 @@ export const profile = {
 
   software: {
     stats: [
-      { value: '3+', label: '年後端開發經驗' },
+      { value: '3+', label: '年全端開發經驗' },
       { value: '8+', label: '企業/個人專案' },
       { value: '2', label: 'Azure 國際認證' },
       { value: '1000', label: 'RPS 高併發支援' }
