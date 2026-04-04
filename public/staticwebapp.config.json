@@ -4,7 +4,7 @@
     "exclude": [
       "/assets/*",
       "/*.{css,js,png,jpg,ico,svg,woff,woff2}",
-      "/googlef1be5ddcf8b98169.html",
+      "/google*.html",
       "/sitemap.xml",
       "/robots.txt"
     ]
