@@ -22,6 +22,10 @@ jobs:
         with:
           submodules: true
           lfs: false
+      - name: Install Chromium for prerender
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq chromium-browser || sudo apt-get install -y -qq chromium
       - name: Install OIDC Client from Core Package
         run: npm install @actions/core@1.6.0 @actions/http-client
       - name: Get Id Token

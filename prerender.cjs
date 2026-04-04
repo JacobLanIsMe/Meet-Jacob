@@ -2,14 +2,33 @@
 // Uses puppeteer-core (already installed) + a minimal static HTTP server to
 // render the built app with a real Chromium instance and replace dist/index.html
 // with the server-rendered HTML so search-engine crawlers see content immediately.
+//
+// Non-fatal: if Chrome is unavailable (e.g. CI without a display or missing
+// Chromium), the script exits 0 so the overall build still succeeds and all
+// other files (robots.txt, sitemap.xml, verification files) are still deployed.
 
 const http = require('http')
 const fs = require('fs')
 const path = require('path')
 
-// Use full `puppeteer` (bundled Chrome) for the executable path,
-// then launch via `puppeteer-core` which is the version at v24.
-const chromePath = require('puppeteer').executablePath()
+// Resolve Chrome executable — try full `puppeteer` first, fall back to
+// system Chrome on Linux CI environments.
+function resolveChromePath() {
+  try {
+    return require('puppeteer').executablePath()
+  } catch (_) {}
+  // Common CI paths
+  const candidates = [
+    '/usr/bin/google-chrome',
+    '/usr/bin/google-chrome-stable',
+    '/usr/bin/chromium-browser',
+    '/usr/bin/chromium',
+  ]
+  for (const p of candidates) {
+    if (fs.existsSync(p)) return p
+  }
+  return null
+}
 
 const DIST = path.join(__dirname, 'dist')
 const PORT = 18765
@@ -58,6 +77,12 @@ function createServer() {
 
 // ── 2. Prerender ─────────────────────────────────────────────────────────────
 async function main() {
+  const chromePath = resolveChromePath()
+  if (!chromePath) {
+    console.warn('[prerender] Chrome not found — skipping prerender. Build continues.')
+    process.exit(0)
+  }
+
   let server, browser
 
   try {
@@ -85,8 +110,11 @@ async function main() {
     console.log(`[prerender] Saved ${outputPath} (${(html.length / 1024).toFixed(1)} kB)`)
     console.log('[prerender] Done.')
   } catch (err) {
-    console.error('[prerender] Error:', err.message)
-    process.exit(1)
+    console.warn('[prerender] Warning:', err.message)
+    console.warn('[prerender] Prerender failed — build continues without prerendering.')
+    // Exit 0: prerender is enhancement-only; core files (verification, sitemap, etc.)
+    // are already in dist/ from the Vite build step.
+    process.exit(0)
   } finally {
     if (browser) await browser.close()
     if (server) server.close()
